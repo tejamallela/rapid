@@ -1,0 +1,28 @@
+<div class="app-container">
+  <div class="search-container">
+    <!-- Search bar component -->
+    <app-search-bar 
+      (search)="onSearch($event)" 
+      class="search-bar">
+    </app-search-bar>
+
+    <!-- Filter button with Font Awesome icon -->
+    <button (click)="toggleFilterPopup()" class="filter-button">
+      Filter <i class="fas fa-filter"></i> <!-- Font Awesome filter icon -->
+    </button>
+  </div>
+
+  <!-- Filter popup component -->
+  <app-filter-popup 
+    *ngIf="isFilterPopupVisible" 
+    (filterChange)="onFilterChange($event)" 
+    (close)="onFilterPopupClose()"
+    class="filter-popup">
+  </app-filter-popup>
+
+  <!-- Item list component -->
+  <app-item-list 
+    [searchQuery]="searchQuery" 
+    [filters]="filters.technologies.concat(filters.industries)">
+  </app-item-list>
+</div>

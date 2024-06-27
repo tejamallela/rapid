@@ -1,0 +1,41 @@
+<div class="filter-popup" *ngIf="isVisible">
+  <h2>Filter</h2>
+  <h5 style="color:grey; font-size: 12px;">Tailored 3D printing solutions to meet specific client needs</h5>
+
+  <!-- Technology Filters -->
+  <div class="collapsible">
+    <button class="collapsible-header" (click)="toggleCollapse('technology')">
+      Technology <i class="fas" [ngClass]="{'fa-chevron-down': !isTechnologyCollapsed, 'fa-chevron-up': isTechnologyCollapsed}"></i>
+    </button>
+    <div *ngIf="!isTechnologyCollapsed" class="collapsible-content">
+      <div *ngFor="let tech of technologyFilters">
+        <input 
+          type="checkbox" 
+          [id]="tech" 
+          (change)="onTechnologyChange(tech, $event)">
+        <label [for]="tech">{{tech}}</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Industry Filters -->
+  <div class="collapsible">
+    <button class="collapsible-header" (click)="toggleCollapse('industry')">
+      Industries <i class="fas" [ngClass]="{'fa-chevron-down': !isIndustryCollapsed, 'fa-chevron-up': isIndustryCollapsed}"></i>
+    </button>
+    <div *ngIf="!isIndustryCollapsed" class="collapsible-content">
+      <div *ngFor="let industry of industryFilters">
+        <input 
+          type="checkbox" 
+          [id]="industry" 
+          (change)="onIndustryChange(industry, $event)">
+        <label [for]="industry">{{industry}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="filter-buttons">
+    <button class="filter-button-arc" (click)="applyFilters()">Apply</button>
+    <button class="filter-button-arc" (click)="resetFilters()">Reset All</button>
+    <button class="filter-button-arc" (click)="closePopup()">Close</button>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="item-list">
+  <div *ngFor="let item of filteredItems" class="item">
+    <div class="item-content">
+      <div class="item-image">
+        <img [src]="item.image" alt="{{item.name}}">
+      </div>
+      <div class="item-details">
+        <h2>{{item.name}}</h2>
+        <div class="tag-list">
+          <div *ngFor="let tag of item.tags" class="tag-circle">{{ tag }}</div>
+        </div>
+        <p class="item-description">{{item.description}}</p>
+        
+        <!-- Display available colors as color circles -->
+        <div class="color-list">
+          <div *ngFor="let color of item.availableColors" class="color-circle" [style.background-color]="color"></div>
+        </div>
+        
+        <!-- More Information section -->
+        <div class="more-list">
+          More:
+          <ul class="custom-bullets">
+            <li><strong>Pros:</strong> {{item.moreInfo.pros}}</li>
+            <li><strong>Cons:</strong> {{item.moreInfo.cons}}</li>
+            <li><strong>Others:</strong> {{item.moreInfo.others}}</li>
+          </ul>
+        </div>
+        
+        <!-- Learn More hyperlink -->
+        <a class="learn-more-link" href="{{item.fullUrl}}" target="_blank">
+          Learn More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

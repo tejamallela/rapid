@@ -1,0 +1,331 @@
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Variables */
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+/* Mixins */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* General styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  padding: 20px;
+}
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Example: Adjust margin as needed */
+}
+
+.search-wrapper {
+  position: relative; 
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 30px 10px 10px; /* Adjust padding to leave space for icon */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px; /* Adjust icon position from the right */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 18px;
+}
+
+.filter-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  color: white;
+  background-color: #ff0000;
+}
+
+.filter-button:hover {
+  color: white; 
+}
+
+
+
+/* Filter popup component */
+.filter-popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.collapsible {
+  margin-bottom: 20px;
+}
+
+.collapsible-header {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ff0000;
+  background-color: #ff0000;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color:white;
+}
+
+.collapsible-content {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.collapsible-content div {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.collapsible-content input {
+  margin-right: 10px;
+}
+
+.collapsible-content input[type="checkbox"] {
+  display: none; /* Hide default checkbox */
+}
+
+/* Create custom checkbox */
+.collapsible-content input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.collapsible-content input[type="checkbox"] + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid red; /* Red border */
+  border-radius: 4px;
+  background-color: white;
+}
+
+.collapsible-content input[type="checkbox"]:checked + label:before {
+  background-color: red; /* Red background when checked */
+  border-color: red; /* Ensure the border remains red */
+}
+
+.collapsible-content input[type="checkbox"] + label:after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+.collapsible-content input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+/* Hover and focus states for accessibility */
+.collapsible-content input[type="checkbox"] + label:hover:before,
+.collapsible-content input[type="checkbox"]:focus + label:before {
+  border-color: #ff4d4d; /* Slightly lighter red for hover/focus state */
+}
+
+.collapsible-content input[type="checkbox"]:checked + label:hover:before,
+.collapsible-content input[type="checkbox"]:checked + label:focus:before {
+  background-color: #ff4d4d; /* Slightly lighter red for checked hover/focus state */
+  border-color: #ff4d4d;
+}
+
+/* Button styles */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.filter-buttons button {
+  padding: 10px 15px;
+  border: none; 
+  border-radius: 25px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-buttons button.filter-button-arc {
+  background-color: white; /* Green color for apply button */
+  color: #dc3545;
+}
+
+.filter-buttons button.filter-button-arc:hover {
+  background-color: #dc3545; /* Darker green on hover */
+  color:white;
+}
+
+
+
+
+
+
+/* Item list component */
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top:10px;
+}
+
+.item {
+  border-radius: 10px; /* Rounded corners for the entire item container */
+  overflow: hidden; /* Ensure image corners are properly rounded */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  margin-bottom: 20px; /* Space between each item */
+  transition: transform 0.3s ease; /* Optional: Adds a smooth hover effect */
+}
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between child elements */
+  padding: 15px; /* Padding inside each item */
+}
+
+.item-image {
+  overflow: hidden;
+  border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
+}
+
+.item-image img {
+  display: block;
+  width: 400px; /* Ensures the image fills its container */
+  height: 200px; /* Maintains aspect ratio */
+}
+
+.tag-list {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.tag-circle {
+  display: inline-block;
+  background-color: grey;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.item-details {
+  flex: 1; /* Takes remaining space */
+}
+
+.item-details h3 {
+  margin-top: 0; /* Remove default margin */
+  margin-bottom: 5px; /* Space below item name */
+}
+
+.item-details .item-description {
+  margin-bottom: 10px; /* Space below item description */
+}
+
+.color-list {
+  margin-bottom: 10px; /* Space below color circles */
+}
+
+.more-list {
+  margin-top: 10px; /* Space above "More" section */
+}
+
+.custom-bullets {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.custom-bullets li {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 8px; /* Adjust as needed */
+}
+
+.custom-bullets li:before {
+  content: "\2713"; /* Unicode character for checkmark */
+  display: inline-block;
+  width: 20px; /* Width of the circle */
+  height: 20px; /* Height of the circle */
+  line-height: 20px; /* Center the checkmark vertically */
+  text-align: center;
+  border-radius: 50%; /* Make it round */
+  background-color: green; /* Green circle background color */
+  color: white; /* White checkmark color */
+  font-size: 14px; /* Adjust checkmark size */
+  margin-right: 10px; /* Space between bullet and text */
+}
+
+.learn-more-link {
+  display: inline-flex;
+  align-items: center;
+  color: red; /* Red color for the link */
+  text-decoration: none; /* Remove underline */
+}
+
+.learn-more-link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.learn-more-link i {
+  margin-left: 5px; /* Space between text and arrow */
+}
+
+.color-list {
+  display: flex;
+  margin-top: 10px;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+}
